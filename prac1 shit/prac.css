@@ -1,0 +1,30 @@
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+}
+
+li {
+  border: solid 1px;
+  list-style: none;
+  padding: 3px 20px;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  margin: 20px 0;
+}
+
+li {
+  flex: none;
+  text-align: center;
+}
+
+ul {
+  border: solid black;
+  max-width: max-content;
+  display: flex;
+  justify-self: center;
+  margin: 0;
+  padding: 0 30px;
+  border-radius: 36px;
+}
