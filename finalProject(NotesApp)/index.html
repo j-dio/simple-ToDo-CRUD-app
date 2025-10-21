@@ -5,18 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notes App</title>
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <main class="notes-app">
     <h1>Notes</h1>
 
-
+    <!-- add note form  -->
     <form id="note-form">
       <input id="note-title" placeholder="Title" required>
-
+      <textarea id="note-body" placeholder="Write your note..." rows="4" required></textarea>
+      <button type="submit">Add Note</button>
     </form>
   </main>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
