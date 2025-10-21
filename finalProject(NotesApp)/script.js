@@ -54,3 +54,14 @@ form.addEventListener('submit', (e) => {
   renderNotes()
   saveNotesToLocalStorage()
 })
+
+// rather than adding event listeners to every delete-btn, we use delegation on the container
+form.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-btn')) {
+    const card = e.target.closest('.note-card')
+    const id = Number(card.dataset.id)
+    notes = notes.filter((n) => n.id !== id) // removes our target note that we want to delete from state
+    renderNotes()
+    saveNotesToLocalStorage()
+  }
+})
