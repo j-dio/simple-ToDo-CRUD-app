@@ -1,3 +1,74 @@
+/* Apple-inspired Notes App Styling */
+
+/* CSS Custom Properties (Variables) */
+:root {
+  /* Primary Colors */
+  --color-primary: #007aff;
+  --color-success: #34c759;
+  --color-danger: #ff3b30;
+  --color-warning: #ff9500;
+  --color-accent: #ffcc00;
+  
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #8e8e93;
+  --color-text-tertiary: #6d6d70;
+  --color-text-inverse: #000000;
+  
+  /* Background Colors */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #1c1c1e;
+  --color-bg-tertiary: #2c2c2e;
+  --color-bg-quaternary: #3a3a3c;
+  --color-bg-card: #1c1c1e;
+  --color-bg-input: #2c2c2e;
+  --color-bg-input-focus: #ffffff;
+  
+  /* Border Colors */
+  --color-border-primary: #38383a;
+  --color-border-secondary: #48484a;
+  
+  /* Interactive Colors */
+  --color-button-primary: #007aff;
+  --color-button-primary-hover: #0056b3;
+  --color-button-secondary: #2c2c2e;
+  --color-button-secondary-hover: #3a3a3c;
+  
+  /* Highlight Colors */
+  --color-highlight: #32d74b;
+  --color-highlight-bg: #ffcc00;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Typography */
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-md: 15px;
+  --font-size-lg: 17px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 34px;
+  
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -6,297 +77,504 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.47059;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.022em;
   min-height: 100vh;
-  padding: 20px;
-  color: #333;
+  padding: 0;
 }
 
-/* Main app container */
+/* Main app container - Apple-style card */
 .notes-app {
-  max-width: 800px;
+  max-width: 980px;
   margin: 0 auto;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  background: var(--color-bg-card);
+  min-height: 100vh;
+  box-shadow: none;
+  border-radius: 0;
 }
 
-/* Header */
+/* Header - Apple Notes style */
 .notes-app h1 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 2.5rem;
-  font-weight: 300;
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
+  text-align: left;
+  padding: 44px var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.022em;
   margin: 0;
-  letter-spacing: -0.5px;
+  border-bottom: 1px solid var(--color-border-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(20px);
+  background: rgba(28, 28, 30, 0.8);
 }
 
-/* Form styling */
+/* Form styling - Apple form elements */
 #note-form {
-  padding: 30px;
-  background: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
+  padding: var(--spacing-xl);
+  background: var(--color-bg-card);
+  border-bottom: 1px solid var(--color-border-primary);
 }
 
 #note-title {
   width: 100%;
-  padding: 16px 20px;
-  border: 2px solid #e9ecef;
-  border-radius: 12px;
-  font-size: 16px;
-  margin-bottom: 16px;
-  transition: all 0.3s ease;
-  background: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: var(--spacing-md);
+  background: var(--color-bg-input);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
 
 #note-title:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: var(--color-bg-input-focus);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+#note-title::placeholder {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-regular);
 }
 
 #note-body {
   width: 100%;
-  padding: 16px 20px;
-  border: 2px solid #e9ecef;
-  border-radius: 12px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  resize: vertical;
-  min-height: 120px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: var(--spacing-lg);
+  resize: none;
+  min-height: 100px;
   font-family: inherit;
-  transition: all 0.3s ease;
-  background: white;
+  background: var(--color-bg-input);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  line-height: 1.47059;
 }
 
 #note-body:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: var(--color-bg-input-focus);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+#note-body::placeholder {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-regular);
 }
 
 #note-form button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--color-button-primary);
+  color: var(--color-text-primary);
   border: none;
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-2xl);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s ease;
+  font-family: inherit;
+  letter-spacing: -0.022em;
 }
 
 #note-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  background: var(--color-button-primary-hover);
+  transform: translateY(-1px);
 }
 
 #note-form button:active {
   transform: translateY(0);
+  background: var(--color-button-primary-hover);
+}
+
+/* Form validation styles */
+#note-title:invalid,
+#note-body:invalid {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.3);
+}
+
+#note-title:valid,
+#note-body:valid {
+  border-color: var(--color-success);
+}
+
+/* Empty state styling */
+#notes-list p {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  padding: 60px var(--spacing-xl);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Ensure proper styling for all form elements */
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Improve accessibility */
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure proper text selection */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 /* Notes list container */
 #notes-list {
-  padding: 30px;
-  min-height: 200px;
+  padding: 0;
+  background: var(--color-bg-card);
 }
 
-#notes-list p {
-  text-align: center;
-  color: #6c757d;
-  font-size: 18px;
-  font-style: italic;
-  padding: 40px 20px;
-}
 
-/* Note cards */
+/* Note cards - Apple Notes style */
 .note-card {
-  background: white;
-  padding: 24px;
-  margin-bottom: 20px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid #f1f3f4;
-  transition: all 0.3s ease;
+  background: var(--color-bg-card);
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid var(--color-border-primary);
+  border-radius: 0;
+  box-shadow: none;
+  transition: all 0.2s ease;
   position: relative;
-  overflow: hidden;
-}
-
-.note-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
 }
 
 .note-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  background: var(--color-bg-tertiary);
+  transform: none;
 }
 
+.note-card:last-child {
+  border-bottom: none;
+}
+
+/* Note content styling */
 .note-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 12px;
-  line-height: 1.3;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-sm) var(--spacing-xl);
+  line-height: 1.29412;
+  letter-spacing: -0.022em;
 }
 
 .note-body {
-  color: #5a6c7d;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.47059;
+  margin: 0;
+  padding: 0 var(--spacing-xl) var(--spacing-lg) var(--spacing-xl);
   white-space: pre-wrap;
   word-wrap: break-word;
+  letter-spacing: -0.022em;
 }
 
-/* Note actions */
+/* Note actions - Apple style */
 .note-actions {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 8px;
+  margin: 0;
+}
+
+.note-card:hover .note-actions {
   display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  margin-top: 16px;
 }
 
 .note-actions button {
-  padding: 10px 20px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  letter-spacing: -0.022em;
 }
 
 .edit-btn {
-  background: #f8f9fa;
-  color: #495057;
-  border: 1px solid #dee2e6;
+  background: #f2f2f7;
+  color: #007aff;
+  border: 1px solid #d2d2d7;
 }
 
 .edit-btn:hover {
-  background: #e9ecef;
-  transform: translateY(-1px);
+  background: #e5e5ea;
 }
 
 .delete-btn {
-  background: #dc3545;
-  color: white;
+  background: var(--color-danger);
+  color: var(--color-text-primary);
 }
 
 .delete-btn:hover {
-  background: #c82333;
-  transform: translateY(-1px);
+  background: #d70015;
 }
 
 .save-btn {
-  background: #28a745;
-  color: white;
+  background: var(--color-success);
+  color: var(--color-text-primary);
 }
 
 .save-btn:hover {
-  background: #218838;
-  transform: translateY(-1px);
+  background: #30b04a;
 }
 
 .cancel-btn {
-  background: #6c757d;
-  color: white;
+  background: var(--color-text-tertiary);
+  color: var(--color-text-primary);
 }
 
 .cancel-btn:hover {
-  background: #5a6268;
-  transform: translateY(-1px);
+  background: #6d6d70;
 }
 
 /* Edit mode styling */
 .note-card input,
 .note-card textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 16px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
   font-family: inherit;
-  margin-bottom: 12px;
-  transition: all 0.3s ease;
-  background: #f8f9fa;
+  margin: 0;
+  background: var(--color-bg-input);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+  font-weight: var(--font-weight-regular);
 }
 
 .note-card input:focus,
 .note-card textarea:focus {
   outline: none;
-  border-color: #667eea;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: var(--color-bg-input-focus);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
 }
 
 .note-card .edit-title {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: var(--spacing-lg) var(--spacing-xl) var(--spacing-sm) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
 }
 
 .note-card .edit-body {
-  min-height: 100px;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  margin: 0 var(--spacing-xl) var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  min-height: 80px;
   resize: vertical;
 }
 
-/* Responsive design */
+/* Edit mode actions - show actions when editing */
+.note-card[data-editing="true"] .note-actions,
+.note-card:has(.edit-title) .note-actions {
+  display: flex;
+  position: static;
+  transform: none;
+  margin: 0 var(--spacing-xl) var(--spacing-lg) var(--spacing-xl);
+  justify-content: flex-end;
+}
+
+/* Additional utility styles for better UX */
+.note-card:has(.edit-title) {
+  background: var(--color-bg-tertiary);
+}
+
+.note-card:has(.edit-title) .note-title,
+.note-card:has(.edit-title) .note-body {
+  display: none;
+}
+
+/* Ensure proper focus management */
+.note-card input:focus,
+.note-card textarea:focus {
+  outline: none;
+  background: var(--color-bg-input-focus);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+/* Smooth transitions for all interactive elements */
+button, input, textarea {
+  transition: all 0.2s ease;
+}
+
+/* Ensure proper button states */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  transform: none;
+  background: inherit;
+}
+
+/* Responsive design - Apple style */
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-  
   .notes-app h1 {
-    font-size: 2rem;
-    padding: 20px;
+    font-size: var(--font-size-3xl);
+    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
   }
   
   #note-form {
-    padding: 20px;
+    padding: var(--spacing-lg);
   }
   
-  #notes-list {
-    padding: 20px;
+  .note-title {
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm) var(--spacing-lg);
   }
   
-  .note-card {
-    padding: 20px;
+  .note-body {
+    padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
   }
   
   .note-actions {
-    flex-direction: column;
-    gap: 8px;
+    right: var(--spacing-lg);
   }
   
-  .note-actions button {
-    width: 100%;
+  .note-card[data-editing="true"] .note-actions,
+  .note-card:has(.edit-title) .note-actions {
+    margin: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  }
+  
+  .note-card .edit-title {
+    margin: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm) var(--spacing-lg);
+  }
+  
+  .note-card .edit-body {
+    margin: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
   }
 }
 
 @media (max-width: 480px) {
   .notes-app h1 {
-    font-size: 1.8rem;
+    font-size: var(--font-size-2xl);
+    padding: var(--spacing-lg);
   }
   
   #note-form {
-    padding: 15px;
+    padding: var(--spacing-md);
+  }
+  
+  .note-actions {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    right: var(--spacing-md);
+  }
+  
+  .note-actions button {
+    font-size: var(--font-size-xs);
+    padding: 6px 10px;
+  }
+}
+
+/* Dark mode support (Apple style) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+  
+  .notes-app {
+    background: var(--color-bg-secondary);
+  }
+  
+  .notes-app h1 {
+    background: rgba(28, 28, 30, 0.8);
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-border-primary);
+  }
+  
+  #note-form {
+    background: var(--color-bg-secondary);
+    border-bottom-color: var(--color-border-primary);
+  }
+  
+  #note-title,
+  #note-body {
+    background: var(--color-bg-input);
+    color: var(--color-text-primary);
+  }
+  
+  #note-title::placeholder,
+  #note-body::placeholder {
+    color: var(--color-text-secondary);
   }
   
   #notes-list {
-    padding: 15px;
+    background: var(--color-bg-secondary);
   }
   
   .note-card {
-    padding: 16px;
+    background: var(--color-bg-secondary);
+    border-bottom-color: var(--color-border-primary);
+  }
+  
+  .note-card:hover {
+    background: var(--color-bg-tertiary);
+  }
+  
+  .note-title {
+    color: var(--color-text-primary);
+  }
+  
+  .note-body {
+    color: var(--color-text-secondary);
+  }
+  
+  .note-card input,
+  .note-card textarea {
+    background: var(--color-bg-input);
+    color: var(--color-text-primary);
+  }
+  
+  .edit-btn {
+    background: var(--color-bg-input);
+    color: var(--color-primary);
+    border-color: var(--color-border-primary);
+  }
+  
+  .edit-btn:hover {
+    background: var(--color-bg-quaternary);
   }
 }
