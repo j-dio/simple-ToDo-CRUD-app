@@ -65,3 +65,24 @@ form.addEventListener('click', (e) => {
     saveNotesToLocalStorage()
   }
 })
+
+// inline edit for notes when edit-btn is clicked
+notesList.addEventListener('click', (e) => {
+  // edit button clicked
+  if (e.target.classList.contains('edit-btn')) {
+    const card = e.target.closest('.note-card')
+    const id = Number(card.dataset.id)
+    const note = notes.find((n) => n.id === id)
+    if (!note) return
+
+    // replace display with inputs
+    card.innerHTML = `
+    <input class="edit-title" value="${escapeHtml(note.title)}">
+    <textarea class="edit-body">${escapeHtml(note.body)}</textarea>
+    <div class="note-actions">
+      <button class="save-btn">Save</button>
+      <button class="cancel-btn>Cancel</button>
+    </div>
+    `
+  }
+})
