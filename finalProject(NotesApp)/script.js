@@ -66,7 +66,7 @@ form.addEventListener('click', (e) => {
   }
 })
 
-// inline edit for notes when edit-btn is clicked
+// EDIT NOTE CARD (title & body)
 notesList.addEventListener('click', (e) => {
   // edit button clicked
   if (e.target.classList.contains('edit-btn')) {
@@ -84,5 +84,31 @@ notesList.addEventListener('click', (e) => {
       <button class="cancel-btn>Cancel</button>
     </div>
     `
+  }
+
+  // SAVE EDIT
+  if (e.target.classList.contains('save-btn')) {
+    const card = e.target.closest('.note-card')
+    const id = Number(card.dataset.id)
+    const title = card.querySelector('.edit-title').value.trim()
+    const body = card.querySelector('.edit-body').value.trim()
+
+    notes = notes.map((n) =>
+      n.id === id
+        ? {
+            ...n,
+            title,
+            body,
+            updateAt: Date.now(),
+          }
+        : n
+    )
+    renderNotes()
+    saveNotesToLocalStorage()
+  }
+
+  // CANCEL EDIT
+  if (e.target.classList.contains('cancel-btn')) {
+    renderNotes()
   }
 })
