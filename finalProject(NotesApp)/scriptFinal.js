@@ -7,6 +7,10 @@ const titleInput = document.querySelector('#note-title')
 const bodyInput = document.querySelector('#note-body')
 const notesList = document.querySelector('#notes-list')
 
+// App boot
+loadNotesFromLocalStorage()
+renderNotes()
+
 function renderNotes() {
   // clear container
   notesList.innerHTML = ''
@@ -56,7 +60,7 @@ form.addEventListener('submit', (e) => {
 })
 
 // rather than adding event listeners to every delete-btn, we use delegation on the container
-form.addEventListener('click', (e) => {
+notesList.addEventListener('click', (e) => {
   if (e.target.classList.contains('delete-btn')) {
     const card = e.target.closest('.note-card')
     const id = Number(card.dataset.id)
@@ -81,7 +85,7 @@ notesList.addEventListener('click', (e) => {
     <textarea class="edit-body">${escapeHtml(note.body)}</textarea>
     <div class="note-actions">
       <button class="save-btn">Save</button>
-      <button class="cancel-btn>Cancel</button>
+      <button class="cancel-btn">Cancel</button>
     </div>
     `
   }
@@ -116,9 +120,24 @@ notesList.addEventListener('click', (e) => {
 // HELPER FUNCTIONS
 function escapeHtml(str = '') {
   return str
-    .replaceAll('&', '&amp')
+    .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;')
+}
+
+function saveNotesToLocalStorage() {
+  localStorage.setItem('notes_app_v1', JSON.stringify(notes))
+}
+
+function loadNotesFromLocalStorage() {
+  const raw = localStorage.getItem('notes_app_v1')
+  if (!raw) return
+  try {
+    notes = JSON.parse(raw)
+  } catch (err) {
+    console.error('Failed to load notes:', err)
+    notes = []
+  }
 }
