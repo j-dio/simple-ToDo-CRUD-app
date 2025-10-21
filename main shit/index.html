@@ -45,8 +45,11 @@
         <h2 id="page-description">Hi! I'm Dio. This is my personal profile page where I share my hobbies, interests, and
           how to get in touch with me.</h2>
 
-        <h3>🎯 My Hobbies & Interests</h3>
+        <section class="add-to-list-cont">
+          <h3>🎯 My Hobbies & Interests</h3>
 
+          <button id="add-btn">+</button>
+        </section>
         <section class="hobbies-list-container">
           <ul class="hobbies-list">
             <li>🎸 Playing Guitar & Making Music</li>
@@ -75,15 +78,7 @@
     </section>
   </section>
 
-  <script>
-    // Hamburger toggle behavior
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.navigation-bar');
-
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
