@@ -35,3 +35,22 @@ function renderNotes() {
     notesList.appendChild(card)
   })
 }
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  const newNote = {
+    id: Date.now(),
+    title: titleInput.value.trim(),
+    body: bodyInput.value.trim(),
+    updateAt: Date.now(),
+  }
+
+  // Basic Validation
+  if (!newNote.title && !newNote.body) return
+
+  notes.unshift(newNote) // add to start so newest shows first
+  form.reset() // clear inputs
+  renderNotes()
+  saveNotesToLocalStorage()
+})
